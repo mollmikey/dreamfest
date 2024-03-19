@@ -27,3 +27,8 @@ export async function getEventsByDay(day: string) {
     .where('events.day', day)
   return events as unknown as EventWithLocation[]
 }
+
+export async function getLocationById(id:number) {
+  const location: LocationData = await connection('locations').where('id', id).first()
+  return location as Location
+}
