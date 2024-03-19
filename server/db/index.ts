@@ -32,3 +32,7 @@ export async function getLocationById(id:number) {
   const location: LocationData = await connection('locations').where('id', id).first()
   return location as Location
 }
+
+export async function updateLocation(id:number, name:string, description:string) {
+  return await connection('locations').where('id', id).update('name', name).update('description', description)
+}
