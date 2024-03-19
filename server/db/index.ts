@@ -13,3 +13,17 @@ export async function getAllLocations() {
   const locations: LocationData[] = await connection('locations').select()
   return locations as Location[]
 }
+
+export async function getEventsByDay(day: string) {
+  const events: EventData[] = await connection('events')
+    .select(
+    'events.id as id', 
+    'day', 'time', 
+    'locations.name as locationName', 
+    'events.name as eventName',
+    'events.description as description'
+    )
+    .join('locations', 'events.location_id', 'locations.id')
+    .where('events.day', day)
+  return events as unknown as EventWithLocation[]
+}
