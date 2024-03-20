@@ -49,3 +49,7 @@ export async function createEvent(obj:any) {
     .returning('id')
 }
 
+export async function deleteEvent(id: number) {
+  return await connection('events').where('id', id).del()
+}
+
