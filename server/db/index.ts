@@ -37,14 +37,15 @@ export async function updateLocation(id:number, name:string, description:string)
   return await connection('locations').where('id', id).update('name', name).update('description', description)
 }
 
-export async function createEvent( 
-  obj: { 
-    name: any; 
-    description: any; 
-    time: any; 
-    day: string; 
-    locationId: any 
-  }) {
-  return await connection('events').insert(obj)
+export async function createEvent(obj:any) {
+  return await connection('events')
+    .insert({
+      name: obj.name,
+      description: obj.description,
+      day: obj.day,
+      location_id: obj.location_id,
+      time: obj.time,
+    })
+    .returning('id')
 }
 
