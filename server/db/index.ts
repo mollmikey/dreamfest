@@ -53,3 +53,7 @@ export async function deleteEvent(id: number) {
   return await connection('events').where('id', id).del()
 }
 
+export async function getEventById(id: number) {
+  return await connection('events').where('id', id).first()
+}
+
