@@ -18,9 +18,11 @@ export default function LocationsList() {
   if (isError) {
     return <>Oops</>
   }
-
   return (
     <>
+      <Link className="nav" to={`/events/add/${location}`}>
+        Add Location
+      </Link>
       <LocationsNav />
       <h2>locations:</h2>
       <ul className="cards">

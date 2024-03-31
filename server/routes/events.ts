@@ -58,10 +58,10 @@ router.patch('/:id', async (req, res, next) => {
     const id = Number(req.body.id)
     const day = validateDay(req.body.day)
     const locationId = Number(req.body.locationId)
-
+    const updatedEvent = await db.updateEvent(id, name, description, day, locationId, time)
     // TODO: UPDATE the event in the db with the matching ID using these details,
     // if no event has a matching id, respond with a 404 instead
-    res.sendStatus(204)
+    res.json(updatedEvent)
   } catch (e) {
     next(e)
   }
