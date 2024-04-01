@@ -20,7 +20,7 @@ export default function LocationsList() {
   }
   return (
     <>
-      <Link className="nav" to={`/events/add/${location}`}>
+      <Link className="nav" to={`/location/add`}>
         Add Location
       </Link>
       <LocationsNav />

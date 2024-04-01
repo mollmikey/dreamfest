@@ -1,10 +1,15 @@
 import { useState, useCallback, ChangeEvent, FormEvent } from 'react'
 import useEditLocation from '../hooks/use-edit-location.ts'
+import { Location } from '../../models/Location.ts'
 
 interface Props {
   id: number
   name: string
   description: string
+}
+interface Props extends Location {
+  submitLabel: string
+  onSubmit: (_: Location) => void
 }
 
 export default function EditLocationForm({ id, name, description }: Props) {
@@ -23,7 +28,7 @@ export default function EditLocationForm({ id, name, description }: Props) {
         [name]: value,
       }))
     },
-    []
+    [],
   )
 
   const handleSubmit = useCallback(
@@ -31,7 +36,7 @@ export default function EditLocationForm({ id, name, description }: Props) {
       e.preventDefault()
       updateLocation.mutate({ id, ...formState })
     },
-    [formState]
+    [formState],
   )
 
   return (
